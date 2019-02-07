@@ -18,4 +18,16 @@
 
 # include "libft.h"
 
+typedef struct		s_fract
+{
+	void			*mlx_ptr;
+	void			*win_ptr;
+	void			*img_ptr;
+
+	char			*img_p;
+	int				bpp;
+	int				size_line;
+	int				endian;
+}					t_fract;
+
 #endif
