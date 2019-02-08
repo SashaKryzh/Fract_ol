@@ -12,23 +12,42 @@
 
 #include "fractol.h"
 
-/*
-	fdf->mlx_ptr = mlx_init();
-	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
-		fdf->filename);
-	fdf->img_ptr = mlx_new_image(fdf->mlx_ptr, IMG_WIDTH, IMG_HEIGHT);
-	fdf->img_p = mlx_get_data_addr(fdf->img_ptr, &fdf->bpp,
-		&fdf->size_line, &fdf->endian);
-	fdf->img = (t_cell **)ft_memalloc(sizeof(t_cell *) * fdf->h);
-	if (fdf->w || fdf->h)
-		fdf->segm = (IMG_WIDTH / 2) / (fdf->w > fdf->h ? fdf->w : fdf->h);
-	mlx_hook(fdf->win_ptr, 2, 5, key_hook, (void *)fdf);
-	mlx_loop(fdf->mlx_ptr);
-*/
+int		key_hook(int key, void *param)
+{
+	if (key == ESC)
+	{
+		exit(0);
+	}
+	return (0);
+}
+
+void	init_win(t_fract *fract)
+{
+	fract->mlx_ptr = mlx_init();
+	fract->win_ptr = mlx_new_window(fract->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
+		"Fract_ol");
+	fract->img_ptr = mlx_new_image(fract->mlx_ptr, IMG_WIDTH, IMG_HEIGHT);
+	fract->img_p = mlx_get_data_addr(fract->img_ptr,
+		&fract->bpp, &fract->size_line, &fract->endian);
+}
+
+void	Mandelbrot_set(t_fract *fract)
+{
+	int		i;
+}
+
+void	magic(t_fract *fract)
+{
+	Mandelbrot_set(fract);
+	mlx_hook(fract->win_ptr, 2, 5, key_hook, (void *)fract);
+	mlx_loop(fract->mlx_ptr);
+}
 
 int		main(void)
 {
-	t_fract	*fract;
+	t_fract	fract;
 
+	init_win(&fract);
+	magic(&fract);
 	return (0);
 }
