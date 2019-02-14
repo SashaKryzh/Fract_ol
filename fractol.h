@@ -35,6 +35,12 @@ typedef struct		s_fract
 	int				endian;
 }					t_fract;
 
+/*
+**	Utils
+*/
+
+void				pixel_fill(t_fract *fract, int x, int y, int color);
+
 # define ESC 53
 
 #endif

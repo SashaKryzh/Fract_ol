@@ -31,19 +31,14 @@ void	init_win(t_fract *fract)
 		&fract->bpp, &fract->size_line, &fract->endian);
 }
 
-void	pixel_fill(t_fract *fract, int color, int x, int y)
-{
-	mlx_pixel_put(fract->mlx_ptr, fract->win_ptr, x, y, color);
-}
-
 void	Mandelbrot_set(t_fract *fract)
 {
-	double xmin = -2.0;
+	double xmin = -2.5;
 	double xmax = 1.5;
 	double ymin = -2.0;
 	double ymax = 2.0;
 
-	int xres = 1500; // Set size
+	int xres = 1080; // Set size
 	int	yres = (xres * (ymax - ymin) / (xmax - xmin)); // Set size
 
 	double	dx = (xmax - xmin) / xres; // Pixel width
@@ -61,6 +56,7 @@ void	Mandelbrot_set(t_fract *fract)
 	int j; // Counter
 
 	int	k; // Iterations
+	int	max_iter = 50;
 
 	j = 0;
 	while (j < yres)
@@ -75,7 +71,7 @@ void	Mandelbrot_set(t_fract *fract)
 			u2 = pow(u, 2);
 			v2 = pow(v, 2);
 			k = 0;
-			while (k < 65555 && u2 + v2 < 4.0)
+			while (k < max_iter && u2 + v2 < 4.0)
 			{
 				v = 2 * u * v + y;
 				u = u2 - v2 + x;
@@ -83,18 +79,19 @@ void	Mandelbrot_set(t_fract *fract)
 				v2 = pow(v, 2);
 				k++;
 			}
-			i++;
-			if (k > 65555)
+			if (k >= max_iter)
 			{
-				pixel_fill(fract, 0, i, j);
+				pixel_fill(fract, i, j, 0);
 			}
 			else
 			{
-				pixel_fill(fract, 2147483647, i, j);
+				pixel_fill(fract, i, j, 2147483647);
 			}
+			i++;
 		}
 		j++;
 	}
+	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->img_ptr, 0, 0);
 }
 
 void	magic(t_fract *fract)

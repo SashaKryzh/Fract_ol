@@ -25,7 +25,8 @@ LIBFT = $(addprefix $(LIB_D)/, libft.a)
 
 INCLS = -I $(MLX_HEAD) -I $(LIB_HEAD)
 
-SRCS =	main.c
+SRCS =	main.c \
+		utils.c
 
 OBJS_D = ./objs
 OBJS = $(addprefix $(OBJS_D)/, $(SRCS:.c=.o))
