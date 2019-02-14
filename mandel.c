@@ -48,29 +48,29 @@ void	Mandelbrot_set(t_fract *fract)
 {
 	int		i; // Counter !!!
 	int		j; // Counter !!!
-	double	x; // Curent
-	double	y; // Curent
+	double	c_x; // Curent
+	double	c_y; // Curent
 
-	double xmin = -2.5;
-	double xmax = 1.5;
-	double ymin = -2.0;
-	double ymax = 2.0;
+	int		xres = 1920; // Set size
+	int		yres = 1080; //(xres * (im_max - im_min) / (re_max - re_min)); // Set size
 
-	int		xres = 1080; // Set size
-	int		yres = (xres * (ymax - ymin) / (xmax - xmin)); // Set size
+	double re_min = -2.5;
+	double re_max = 1.5;
+	double im_min = -2.0;
+	double im_max = im_min + (re_max - re_min) * yres / xres;
 
-	double	dx = (xmax - xmin) / xres; // Pixel width
-	double	dy = (ymax - ymin) / yres; // Pixel height
+	double	re_fact = (re_max - re_min) / xres; // Pixel width
+	double	im_fact = (im_max - im_min) / yres; // Pixel height
 
 	i = 0;
 	while (i < yres)
 	{
-		y = ymax - i * dy;
+		c_y = im_max - i * im_fact;
 		j = 0;
 		while (j < xres)
 		{
-			x = xmin + j * dx;
-			m_pixel_fill(fract, j, i, iter(fract, x, y));
+			c_x = re_min + j * re_fact;
+			m_pixel_fill(fract, j, i, iter(fract, c_x, c_y));
 			j++;
 		}
 		i++;

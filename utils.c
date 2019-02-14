@@ -18,6 +18,8 @@ int		color_calc(int k)
 	char	*n;
 
 	n = (char *)&c;
+	if (k > 20)
+		return (16711680);
 	return (2147483647);
 }
 
