@@ -33,6 +33,7 @@ void	init_win(t_fract *fract)
 
 void	magic(t_fract *fract)
 {
+	fract->max_iter = 100;
 	Mandelbrot_set(fract);
 	mlx_hook(fract->win_ptr, 2, 5, key_hook, (void *)fract);
 	mlx_loop(fract->mlx_ptr);

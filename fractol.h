@@ -23,6 +23,8 @@
 # define IMG_WIDTH WIN_WIDTH
 # define IMG_HEIGHT WIN_HEIGHT
 
+# define IMGWIN_PAR fract->mlx_ptr, fract->win_ptr, fract->img_ptr
+
 typedef struct		s_fract
 {
 	void			*mlx_ptr;
@@ -36,6 +38,10 @@ typedef struct		s_fract
 
 	int				max_iter;
 }					t_fract;
+
+/*
+**	Fractols
+*/
 
 void				Mandelbrot_set(t_fract *fract);
 

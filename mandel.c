@@ -22,16 +22,16 @@ void	m_pixel_fill(t_fract *f, int x, int y, int k)
 
 int		iter(t_fract *f, double x, double y)
 {
-	double zx;
-	double zy;
-	double zx2;
-	double zy2;
-	int k;
+	double	zx;
+	double	zy;
+	double	zx2;
+	double	zy2;
+	int		k;
 
 	zx = 0.0;
 	zy = 0.0;
-	zx2 = pow(zx, 2);
-	zy2 = pow(zy, 2);
+	zx2 = 0.0;
+	zy2 = 0.0;
 	k = 0;
 	while (k < f->max_iter && zx2 + zy2 < 4.0)
 	{
@@ -46,24 +46,21 @@ int		iter(t_fract *f, double x, double y)
 
 void	Mandelbrot_set(t_fract *fract)
 {
+	int		i; // Counter !!!
+	int		j; // Counter !!!
+	double	x; // Curent
+	double	y; // Curent
+
 	double xmin = -2.5;
 	double xmax = 1.5;
 	double ymin = -2.0;
 	double ymax = 2.0;
 
-	int xres = 1000; // Set size
-	int	yres = (xres * (ymax - ymin) / (xmax - xmin)); // Set size
+	int		xres = 1080; // Set size
+	int		yres = (xres * (ymax - ymin) / (xmax - xmin)); // Set size
 
 	double	dx = (xmax - xmin) / xres; // Pixel width
 	double	dy = (ymax - ymin) / yres; // Pixel height
-
-	double	x; // Curent
-	double	y; // Curent
-
-	int i; // Counter !!!
-	int j; // Counter !!!
-
-	fract->max_iter = 100;
 
 	i = 0;
 	while (i < yres)
@@ -78,5 +75,5 @@ void	Mandelbrot_set(t_fract *fract)
 		}
 		i++;
 	}
-	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->img_ptr, 0, 0);
+	mlx_put_image_to_window(IMGWIN_PAR, 0, 0);
 }
