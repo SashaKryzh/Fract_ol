@@ -12,12 +12,23 @@
 
 #include "fractol.h"
 
+int		color_calc(int k)
+{
+	int		c;
+	char	*n;
+
+	n = (char *)&c;
+	return (2147483647);
+}
+
 void	pixel_fill(t_fract *f, int x, int y, int color)
 {
 	int		where;
 	uint8_t *what;
 	int		i;
 
+	if (x >= IMG_WIDTH || y >= IMG_HEIGHT)
+		return ;
 	where = y * f->size_line + x * f->bpp / 8;
 	what = (uint8_t *)&color;
 	i = 0;

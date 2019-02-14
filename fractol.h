@@ -33,12 +33,17 @@ typedef struct		s_fract
 	int				bpp;
 	int				size_line;
 	int				endian;
+
+	int				max_iter;
 }					t_fract;
+
+void				Mandelbrot_set(t_fract *fract);
 
 /*
 **	Utils
 */
 
+int					color_calc(int k);
 void				pixel_fill(t_fract *fract, int x, int y, int color);
 
 # define ESC 53
