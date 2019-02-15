@@ -19,8 +19,8 @@ int		color_calc(int k)
 
 	n = (char *)&c;
 	if (k > 20)
-		return (16711680);
-	return (2147483647);
+		return (255 << 8); // Grean
+	return (255 << 16 | 255 << 8 | 255); // White
 }
 
 void	pixel_fill(t_fract *f, int x, int y, int color)

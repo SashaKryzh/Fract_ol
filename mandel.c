@@ -28,8 +28,8 @@ int		julia(t_fract *f, double zx, double zy)
 	double	zy2;
 	int k;
 
-	cx = 0.285;
-	cy = 0.01;
+	cx = -0.8;
+	cy = 0.156;
 	zx2 = pow(zx, 2);
 	zy2 = pow(zy, 2);
 	k = 0;
