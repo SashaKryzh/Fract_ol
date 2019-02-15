@@ -60,5 +60,7 @@ int					color_calc(int k);
 void				pixel_fill(t_fract *fract, int x, int y, int color);
 
 # define ESC 53
+# define PLUS 24
+# define MINUS 27
 
 #endif

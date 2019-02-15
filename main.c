@@ -14,9 +14,18 @@
 
 int		key_hook(int key, void *param)
 {
+	t_fract *f;
+
+	f = (t_fract *)param;
 	if (key == ESC)
 	{
 		exit(0);
+	}
+	if (key == PLUS || key == MINUS)
+	{
+		if (f->max_iter > 2 || key == PLUS)
+			f->max_iter += key == PLUS ? 1 : -1;
+		Julia_Mandel(f);
 	}
 	return (0);
 }
