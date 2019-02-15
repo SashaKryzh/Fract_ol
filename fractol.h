@@ -38,7 +38,11 @@ typedef struct		s_fract
 
 	int				(*fract)();
 	int				max_iter;
+
+	char			*filename;
 }					t_fract;
+
+void				get_args(t_fract *f, int ac, char *av[]);
 
 /*
 **	Fractols
