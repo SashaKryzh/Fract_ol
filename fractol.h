@@ -23,7 +23,7 @@
 # define IMG_WIDTH WIN_WIDTH
 # define IMG_HEIGHT WIN_HEIGHT
 
-# define IMGWIN_PAR fract->mlx_ptr, fract->win_ptr, fract->img_ptr
+# define IMGWIN_PARAMS f->mlx_ptr, f->win_ptr, f->img_ptr
 
 typedef struct		s_fract
 {
@@ -36,6 +36,7 @@ typedef struct		s_fract
 	int				size_line;
 	int				endian;
 
+	int				(*fract)();
 	int				max_iter;
 }					t_fract;
 
@@ -43,7 +44,9 @@ typedef struct		s_fract
 **	Fractols
 */
 
-void				Mandelbrot_set(t_fract *fract);
+void				Julia_Mandel(t_fract *fract);
+int					julia(t_fract *f, double zx, double zy);
+int					mandel(t_fract *f, double x0, double y0);
 
 /*
 **	Utils

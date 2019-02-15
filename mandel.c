@@ -20,7 +20,31 @@ void	m_pixel_fill(t_fract *f, int x, int y, int k)
 		pixel_fill(f, x, y, color_calc(k));
 }
 
-int		iter(t_fract *f, double x, double y)
+int		julia(t_fract *f, double zx, double zy)
+{
+	double	cx;
+	double	cy;
+	double	zx2;
+	double	zy2;
+	int k;
+
+	cx = 0.285;
+	cy = 0.01;
+	zx2 = pow(zx, 2);
+	zy2 = pow(zy, 2);
+	k = 0;
+	while (k < f->max_iter && zx2 + zy2 < 4)
+	{
+		zy = 2 * zx * zy + cy;
+		zx = zx2 - zy2 + cx;
+		zx2 = pow(zx, 2);
+		zy2 = pow(zy, 2);
+		k++;
+	}
+	return (k);
+}
+
+int		mandel(t_fract *f, double x0, double y0)
 {
 	double	zx;
 	double	zy;
@@ -33,10 +57,10 @@ int		iter(t_fract *f, double x, double y)
 	zx2 = 0.0;
 	zy2 = 0.0;
 	k = 0;
-	while (k < f->max_iter && zx2 + zy2 < 4.0)
+	while (k < f->max_iter && zx2 + zy2 <= 4.0)
 	{
-		zy = 2 * zx * zy + y;
-		zx = zx2 - zy2 + x;
+		zy = 2 * zx * zy + y0;
+		zx = zx2 - zy2 + x0;
 		zx2 = pow(zx, 2);
 		zy2 = pow(zy, 2);
 		k++;
@@ -44,15 +68,14 @@ int		iter(t_fract *f, double x, double y)
 	return (k);
 }
 
-void	Mandelbrot_set(t_fract *fract)
+void	Julia_Mandel(t_fract *f)
 {
-	int		i; // Counter !!!
-	int		j; // Counter !!!
-	double	c_x; // Curent
-	double	c_y; // Curent
+	double	xy[2];
+	int		i;
+	int		j;
 
-	int		xres = 1920; // Set size
-	int		yres = 1080; //(xres * (im_max - im_min) / (re_max - re_min)); // Set size
+	int		xres = 1000; // Set size
+	int		yres = 1000;//(xres * (im_max - im_min) / (re_max - re_min)); // Set size
 
 	double re_min = -2.5;
 	double re_max = 1.5;
@@ -65,15 +88,15 @@ void	Mandelbrot_set(t_fract *fract)
 	i = 0;
 	while (i < yres)
 	{
-		c_y = im_max - i * im_fact;
+		xy[1] = im_max - i * im_fact;
 		j = 0;
 		while (j < xres)
 		{
-			c_x = re_min + j * re_fact;
-			m_pixel_fill(fract, j, i, iter(fract, c_x, c_y));
+			xy[0] = re_min + j * re_fact;
+			m_pixel_fill(f, j, i, f->fract(f, xy[0], xy[1]));
 			j++;
 		}
 		i++;
 	}
-	mlx_put_image_to_window(IMGWIN_PAR, 0, 0);
+	mlx_put_image_to_window(IMGWIN_PARAMS, 0, 0);
 }
