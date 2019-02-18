@@ -74,13 +74,13 @@ void	Julia_Mandel(t_fract *f)
 	int		i;
 	int		j;
 
-	int		xres = 1000; // Set size
-	int		yres = 1000;//(xres * (im_max - im_min) / (re_max - re_min)); // Set size
+	int		xres = 1000;
+	int		yres = 1000;
 
 	double re_min = -2.5;
 	double re_max = 1.5;
 	double im_min = -2.0;
-	double im_max = im_min + (re_max - re_min) * yres / xres;
+	double im_max = 2.0;
 
 	double	re_fact = (re_max - re_min) / xres; // Pixel width
 	double	im_fact = (im_max - im_min) / yres; // Pixel height

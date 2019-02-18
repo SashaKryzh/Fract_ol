@@ -39,6 +39,13 @@ typedef struct		s_fract
 	int				(*fract)();
 	int				max_iter;
 
+	int				x_res;
+	int				y_res;
+	float			re_min;
+	float			re_max;
+	float			im_min;
+	float			im_max;
+
 	char			*filename;
 }					t_fract;
 
