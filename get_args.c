@@ -12,6 +12,14 @@
 
 #include "fractol.h"
 
+void	show_usage(void)
+{
+	ft_putstr("Usage: ./fractol [id]\n");
+	ft_putstr("1 - Julia set\n");
+	ft_putstr("2 - Mandelbrot set\n");
+	exit(1);
+}
+
 void	get_args(t_fract *f, int ac, char *av[])
 {
 	if (ac == 2)
@@ -26,11 +34,9 @@ void	get_args(t_fract *f, int ac, char *av[])
 			f->fract = &mandel;
 			f->filename = "Fract_ol - Mandelbrot";
 		}
+		else
+			show_usage();
 	}
-	if (f->fract)
-		return ;
-	ft_putstr("Usage: ./fractol [id]\n");
-	ft_putstr("1 - Julia set\n");
-	ft_putstr("2 - Mandelbrot set\n");
-	exit(1);
+	else
+		show_usage();
 }
