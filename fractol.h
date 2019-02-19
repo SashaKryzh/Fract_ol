@@ -18,8 +18,8 @@
 
 # include "libft.h"
 
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
+# define WIN_WIDTH 2000
+# define WIN_HEIGHT 1200
 # define IMG_WIDTH WIN_WIDTH
 # define IMG_HEIGHT WIN_HEIGHT
 
@@ -38,6 +38,7 @@ typedef struct		s_fract
 
 	int				(*fract)();
 	int				max_iter;
+	double			scale;
 
 	int				x_res;
 	int				y_res;
@@ -45,6 +46,8 @@ typedef struct		s_fract
 	float			re_max;
 	float			im_min;
 	float			im_max;
+	double			re_fact;
+	double			im_fact;
 
 	char			*filename;
 }					t_fract;
@@ -59,6 +62,8 @@ void				Julia_Mandel(t_fract *fract);
 int					julia(t_fract *f, double zx, double zy);
 int					mandel(t_fract *f, double x0, double y0);
 
+void				zoom(t_fract *f);
+
 /*
 **	Utils
 */
@@ -69,5 +74,7 @@ void				pixel_fill(t_fract *fract, int x, int y, int color);
 # define ESC 53
 # define PLUS 24
 # define MINUS 27
+# define ARR_UP 126
+# define ARR_DOWN 125
 
 #endif

@@ -27,6 +27,7 @@ INCLS = -I $(MLX_HEAD) -I $(LIB_HEAD)
 
 SRCS =	main.c \
 		mandel.c \
+		zoom.c \
 		get_args.c \
 		utils.c
 

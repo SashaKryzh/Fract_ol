@@ -27,6 +27,12 @@ int		key_hook(int key, void *param)
 			f->max_iter += key == PLUS ? 1 : -1;
 		Julia_Mandel(f);
 	}
+	if (key == ARR_UP || key == ARR_DOWN)
+	{
+		if (f->scale > 0.2 || key == ARR_UP)
+			f->scale += key == ARR_UP ? 0.1 : -0.1;
+		Julia_Mandel(f);
+	}
 	return (0);
 }
 
@@ -43,6 +49,7 @@ void	init_win(t_fract *fract)
 void	magic(t_fract *fract)
 {
 	fract->max_iter = 50;
+	fract->scale = 1.0;
 	Julia_Mandel(fract);
 	mlx_hook(fract->win_ptr, 2, 5, key_hook, (void *)fract);
 	mlx_loop(fract->mlx_ptr);

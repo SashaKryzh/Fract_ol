@@ -68,31 +68,44 @@ int		mandel(t_fract *f, double x0, double y0)
 	return (k);
 }
 
+void	init_vars(t_fract *f)
+{
+	f->x_res = IMG_WIDTH;
+	f->y_res = IMG_HEIGHT;
+	if (f->fract == &mandel)
+	{
+		f->re_min = -3.0;
+		f->re_max = 2.0;
+		f->im_min = -1.5;
+		f->im_max = 1.5;
+	}
+	else
+	{
+		f->re_min = -2.0;
+		f->re_max = 2.0;
+		f->im_min = -1.2;
+		f->im_max = 1.2;
+	}
+	zoom(f);
+	f->re_fact = (f->re_max - f->re_min) / f->x_res;
+	f->im_fact = (f->im_max - f->im_min) / f->y_res;
+}
+
 void	Julia_Mandel(t_fract *f)
 {
 	double	xy[2];
 	int		i;
 	int		j;
 
-	int		xres = 1000;
-	int		yres = 1000;
-
-	double re_min = -2.5;
-	double re_max = 1.5;
-	double im_min = -2.0;
-	double im_max = 2.0;
-
-	double	re_fact = (re_max - re_min) / xres; // Pixel width
-	double	im_fact = (im_max - im_min) / yres; // Pixel height
-
+	init_vars(f);
 	i = 0;
-	while (i < yres)
+	while (i < f->y_res)
 	{
-		xy[1] = im_max - i * im_fact;
+		xy[1] = f->im_max - i * f->im_fact;
 		j = 0;
-		while (j < xres)
+		while (j < f->x_res)
 		{
-			xy[0] = re_min + j * re_fact;
+			xy[0] = f->re_min + j * f->re_fact;
 			m_pixel_fill(f, j, i, f->fract(f, xy[0], xy[1]));
 			j++;
 		}
