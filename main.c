@@ -28,6 +28,7 @@ void	magic(t_fract *fract)
 	fract->scale = 1.0;
 	Julia_Mandel(fract);
 	mlx_hook(fract->win_ptr, 2, 5, key_hook, (void *)fract);
+	mlx_hook(fract->win_ptr, 4, 5, mouse_press, (void *)fract);
 	mlx_hook(fract->win_ptr, 6, 5, mouse_move, (void *)fract);
 	mlx_hook(fract->win_ptr, 17, 5, close_hook, (void *)fract);
 	mlx_loop(fract->mlx_ptr);

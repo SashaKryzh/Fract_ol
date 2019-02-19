@@ -30,7 +30,7 @@ SRCS =	main.c \
 		zoom.c \
 		get_args.c \
 		utils.c \
-		hooks .c
+		hooks.c
 
 OBJS_D = ./objs
 OBJS = $(addprefix $(OBJS_D)/, $(SRCS:.c=.o))

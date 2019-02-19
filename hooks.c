@@ -21,7 +21,29 @@ int		close_hook(void *param)
 
 int		mouse_move(int x, int y, void *param)
 {
-	ft_printf("%d %d", x, y);
+	t_fract *f;
+
+	if (x < 0 || x > IMG_WIDTH || y < 0 || y > IMG_HEIGHT)
+		return (0);
+	f = (t_fract *)param;
+	f->mouse_x = x;
+	f->mouse_y = y;
+	if (f->fract == &julia)
+		Julia_Mandel(f);
+	return (0);
+}
+
+int		mouse_press(int key, int x, int y, void *param)
+{
+	t_fract *f;
+
+	f = (t_fract *)param;
+	if (key == SCRL_UP || key == SCRL_DOWN)
+	{
+		if (f->scale > 0.2 || key == SCRL_UP)
+			f->scale += key == SCRL_UP ? 0.1 : -0.1;
+		Julia_Mandel(f);
+	}
 	return (0);
 }
 

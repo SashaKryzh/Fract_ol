@@ -40,6 +40,9 @@ typedef struct		s_fract
 	int				max_iter;
 	double			scale;
 
+	int				mouse_x;
+	int				mouse_y;
+
 	int				x_res;
 	int				y_res;
 	float			re_min;
@@ -76,6 +79,7 @@ void				pixel_fill(t_fract *fract, int x, int y, int color);
 */
 
 int					key_hook(int key, void *param);
+int					mouse_press(int key, int x, int y, void *param);
 int					mouse_move(int x, int y, void *param);
 int					close_hook(void *param);
 
@@ -84,5 +88,9 @@ int					close_hook(void *param);
 # define MINUS 27
 # define ARR_UP 126
 # define ARR_DOWN 125
+
+#define LEFT_B 1
+#define SCRL_UP 4
+#define SCRL_DOWN 5
 
 #endif

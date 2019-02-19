@@ -20,6 +20,20 @@ void	m_pixel_fill(t_fract *f, int x, int y, int k)
 		pixel_fill(f, x, y, color_calc(k));
 }
 
+void	calc_c(t_fract *f, double *cx, double *cy)
+{
+	if (f->mouse_x == 0 && f->mouse_y == 0)
+	{
+		*cx = -0.8;
+		*cy = 0.156;
+	}
+	else
+	{
+		*cx = f->re_min + f->mouse_x * f->re_fact;
+		*cy = f->im_max - f->mouse_y * f->im_fact;
+	}
+}
+
 int		julia(t_fract *f, double zx, double zy)
 {
 	double	cx;
@@ -28,8 +42,7 @@ int		julia(t_fract *f, double zx, double zy)
 	double	zy2;
 	int k;
 
-	cx = -0.8;
-	cy = 0.156;
+	calc_c(f, &cx, &cy);
 	zx2 = pow(zx, 2);
 	zy2 = pow(zy, 2);
 	k = 0;
@@ -86,9 +99,9 @@ void	init_vars(t_fract *f)
 		f->im_min = -1.2;
 		f->im_max = 1.2;
 	}
-	zoom(f);
 	f->re_fact = (f->re_max - f->re_min) / f->x_res;
 	f->im_fact = (f->im_max - f->im_min) / f->y_res;
+	zoom(f);
 }
 
 void	Julia_Mandel(t_fract *f)
