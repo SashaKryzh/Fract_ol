@@ -33,7 +33,7 @@ int		julia(t_fract *f, double zx, double zy)
 	zx2 = pow(zx, 2);
 	zy2 = pow(zy, 2);
 	k = 0;
-	while (k < f->max_iter && zx2 + zy2 < 4)
+	while (k < f->max_iter && zx2 + zy2 <= 4)
 	{
 		zy = 2 * zx * zy + cy;
 		zx = zx2 - zy2 + cx;

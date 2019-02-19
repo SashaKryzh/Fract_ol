@@ -29,7 +29,8 @@ SRCS =	main.c \
 		mandel.c \
 		zoom.c \
 		get_args.c \
-		utils.c
+		utils.c \
+		hooks .c
 
 OBJS_D = ./objs
 OBJS = $(addprefix $(OBJS_D)/, $(SRCS:.c=.o))

@@ -71,6 +71,14 @@ void				zoom(t_fract *f);
 int					color_calc(int k);
 void				pixel_fill(t_fract *fract, int x, int y, int color);
 
+/*
+**	Hooks
+*/
+
+int					key_hook(int key, void *param);
+int					mouse_move(int x, int y, void *param);
+int					close_hook(void *param);
+
 # define ESC 53
 # define PLUS 24
 # define MINUS 27
